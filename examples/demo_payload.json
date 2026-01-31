@@ -1,0 +1,14 @@
+{
+  "violation_detected": true,
+  "rule_id": "GOV-404",
+  "sentinel_action": "INTERCEPT",
+  "message": "Destructive Operation Detected",
+  "generated_sql": "DROP TABLE users;",
+  "allowed": false,
+  "timestamp": "2025-01-31T12:00:00Z",
+  "context": {
+    "source": "watsonx_orchestrate",
+    "model": "ibm-granite",
+    "user_intent": "Remove the users table"
+  }
+}
