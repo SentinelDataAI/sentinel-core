@@ -1,0 +1,14 @@
+
+Hello,
+
+I am Bobby(Robert) Proffitt, BOB(from IBM Project BOB) and I built this and hope you enjoy.
+we want to develop something that ANYONE looking at this could use as a guide.
+
+1. From within IBM WatsonX Orchestrate - Initiate a chat with Sentinel_Data_AI_Assistant for Team: Symbolic Overlords(2,3,4 are prompts)
+2. Remove all employees from the Sales Department
+3. Preview
+4. just name
+
+This will demonstrate all agents(including optimization).  It was a lot of work and ALOT of fun! I hope that you enjoyed.
+
+Bobby & BOB 

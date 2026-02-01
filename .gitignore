@@ -1,9 +1,15 @@
-# Environment and secrets
+# Sentinel .gitignore
+# Built with IBM Project BOB
+
+# Environment and Secrets
 .env
 .env.local
 .env.*.local
 *.key
 *.pem
+*.crt
+credentials.json
+secrets.yaml
 
 # Python
 __pycache__/
@@ -26,12 +32,14 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Virtual environments
+# Virtual Environments
 venv/
 .venv/
 ENV/
 env/
+.conda/
 
 # IDE
 .idea/
@@ -39,14 +47,42 @@ env/
 *.swp
 *.swo
 *~
+.project
+.pydevproject
+.settings/
 
-# Testing / coverage
+# Testing / Coverage
 .coverage
+.coverage.*
 htmlcov/
 .pytest_cache/
 .tox/
 .nox/
+coverage.xml
+*.cover
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
 
 # OS
 .DS_Store
+.DS_Store?
+._*
 Thumbs.db
+ehthumbs.db
+
+# Db2 artifacts
+*.ixf
+*.del
+db2diag.log
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Local development
+local/
+scratch/
+tmp/

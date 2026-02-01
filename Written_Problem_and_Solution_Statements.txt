@@ -1,0 +1,11 @@
+Project Name: Sentinel Team Name: Sentinel Data AI
+
+The Problem Enterprises are desperate to deploy Agentic AI, but they are terrified of "autonomy." In high-Steaks(sic) industries like Finance and Defense, a single hallucinated DROP TABLE or DELETE FROM command can cost millions. Because of this "Fear of Hallucination," teams are forced to keep humans in the loop for every SQL query(should have been happening anyway), which destroys the ROI of AI and keeps data analysts buried in backlog. Current safety guardrails are either too rigid (blocking valid queries) or too loose (allowing semantic jailbreaks). We could talk about how to stop composition attacks across query sequences, but that makes my head hurt, so another day.
+
+The Solution Sentinel is a fail-closed, neuro-symbolic governance layer that decouples Reasoning (Generative AI) from Execution (Deterministic Logic). We built a Unified Logic Kernel that sits between your watsonx Agent and your Db2 Database.
+
+AI Advises: IBM Granite 3.0 generates the SQL intent.
+
+Through WatsonX Orchestrate the Sentinel Decides: Our engine intercepts the query, validates it against a "Symbolic" Db2 Policy Table, and checks for semantic threats using IBM Granite Guardian 3.0 and polcy as code using Db2.
+
+Result: If the query violates a rule (e.g., PII access, destructive op,etc,etc), it is blocked in 89ms. If it is safe but slow, our Optimizer Agent rewrites it to be 10x faster.

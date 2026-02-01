@@ -1,0 +1,127 @@
+# ============================================================================
+# SQL Query Optimizer - External Agent Configuration
+# ============================================================================
+# This agent analyzes SQL queries and provides performance recommendations
+# using the DataSentinel API.
+#
+# MIGRATION NOTE: Converted from 'react' style to 'external' kind
+# Previous configuration preserved below as comments for reference
+# ============================================================================
+
+spec_version: v1
+kind: external
+name: sql_query_optimizer
+title: "SQL Query Optimizer"
+description: "Analyzes SQL queries and provides performance recommendations using the DataSentinel API. Identifies bottlenecks, suggests indexes, and provides query rewrite suggestions with measurable performance improvements."
+api_url: "https://pseudopodal-charles-nonodorously.ngrok-free.dev"
+tags:
+  - "sql"
+  - "performance"
+  - "optimization"
+  - "database"
+chat_params:
+  stream: true
+config:
+  hidden: false
+  enable_cot: false
+nickname: "query_optimizer"
+
+# ============================================================================
+# PREVIOUS CONFIGURATION (React Style Agent)
+# ============================================================================
+# Preserved for reference and potential rollback
+# ============================================================================
+#
+# spec_version: v1
+# name: SQL_Query_Optimizer
+# id: sql-query-optimizer
+# description: Analyzes SQL queries and provides performance recommendations
+# 
+# metadata:
+#   category: Performance & Optimization
+#   icon: 🚀
+# 
+# agent:
+#   style: react
+#   
+#   welcome_message: "I analyze SQL queries and suggest performance optimizations. Send me a query to optimize!"
+#   
+#   quick_start_prompts:
+#     - "Optimize: SELECT * FROM orders WHERE customer_id = 123"
+#     - "Improve: SELECT * FROM large_table WHERE status = 'active'"
+#     - "Analyze: SELECT name FROM customers WHERE region = 'US'"
+#     - "Review performance: SELECT COUNT(*) FROM orders GROUP BY region"
+#   
+#   tools:
+#     - connection_id: datasentinel_governance_api_20260130222921301
+#       actions:
+#         - evaluateQuery
+#         - executeQuery
+#   
+#   model:
+#     name: granite-13b-chat-v2
+#     parameters:
+#       temperature: 0.5
+#       max_tokens: 700
+#   
+#   instructions: |
+#     You are a database performance consultant named "Query Optimizer". Your role is to analyze SQL queries and provide actionable optimization recommendations.
+#     
+#     CRITICAL: If required inputs are missing, do not speculate. Ask for the minimum missing fields in a single question and wait.
+#     
+#     When a user provides a SQL query:
+#     1. ALWAYS call evaluateQuery tool FIRST with principal_id (e.g. "watsonx_user") and sql in the request body (optional: context). Never omit principal_id or the API will return 400.
+#        - Call the API for ALL query types: SELECT, INSERT, UPDATE, DELETE, DROP, TRUNCATE, etc.
+#        - Do NOT make your own security judgments - let the DataSentinel API decide
+#        - The API has comprehensive policies for all SQL operations
+#     2. Review the response for policy/structural feedback (violations, decision, reason)
+#     3. If ALLOWED, optionally call executeQuery to get execution_time_ms and row_count for performance analysis
+#     4. Present findings in a structured format:
+#        - Query complexity and estimated execution time
+#        - Number of rows affected
+#        - Index usage (existing and missing)
+#        - Potential bottlenecks
+#     5. Provide specific optimization recommendations:
+#        - Index suggestions with exact CREATE INDEX statements
+#        - Query rewrite suggestions with before/after examples
+#        - Performance impact estimates (e.g., "5x faster", "10x speedup")
+#     6. Prioritize recommendations by impact (highest impact first)
+#     
+#     Be technical but accessible. Focus on actionable improvements with measurable benefits.
+#     
+#     Tools:
+#     - evaluateQuery: REQUIRED for all queries - validates against governance policies and provides structural feedback
+#     - executeQuery: Optional when query is ALLOWED - provides execution_time_ms, row_count, results for performance discussion
+#     - Note: Dedicated analyze/explain endpoints are not in the current API; derive advice from evaluate + execute.
+#     
+#     Example Response:
+#     User: "SELECT * FROM orders WHERE customer_id = 123"
+#     You: "📊 Query Analysis:
+#     (Note: SELECT * may be DENIED by policy; then there are no execution metrics. Recommend replacing SELECT * first, then re-run to get row count and execution time.)
+#     - Estimated rows: 1,500 (if query was allowed and executed)
+#     - Execution time: ~45ms (if executeQuery was used and allowed)
+#     - ⚠️ Table scan detected (no index on customer_id)
+#     
+#     🚀 Optimization Recommendations:
+#     
+#     1. **Replace SELECT * with specific columns** (30% faster)
+#        ```sql
+#        SELECT id, order_date, total, status
+#        FROM orders
+#        WHERE customer_id = 123
+#        ```
+#        Impact: Reduces data transfer and memory usage
+#     
+#     2. **Add index on customer_id** (10x faster)
+#        ```sql
+#        CREATE INDEX idx_customer ON orders(customer_id)
+#        ```
+#        Impact: Eliminates table scan, enables index seek
+#     
+#     3. **Add LIMIT clause** (if you don't need all rows)
+#        ```sql
+#        ... LIMIT 100
+#        ```
+#        Impact: Reduces result set size
+#     
+#     📈 Estimated Total Improvement: **15x faster** with all optimizations"

@@ -1,0 +1,14 @@
+How We Utilized Agentic AI & IBM watsonx Orchestrate I(bob & I) did not just build a chatbot; We built a Multi-Agent System coordinated entirely by IBM watsonx Orchestrate.
+
+1. The Orchestration Layer: We used watsonx Orchestrate to define the "SQL Lifecycle" workflow. It manages the state and handoffs between three specialized agents, ensuring no single agent has unchecked access to the database.
+
+2. The Agentic Architecture:
+
+Agent A (The Generator): A native watsonx agent using IBM Granite to translate natural language into SQL.
+
+Agent B (The Enforcer): A custom "Guardian" agent powered by IBM Granite Guardian 3.0. It does not generate text; it classifies intent (Malicious/Safe) and cross-references it with deterministic Db2 rules.
+
+Agent C (The Optimizer): A specialist agent that analyzes "Safe" SQL for performance bottlenecks (missing indexes, table scans) and rewrites the query for speed.
+
+This architecture moves beyond simple "RAG" into true Agentic AI, where autonomous actors collaborate to achieve a goal (Safe Data Retrieval) that none could achieve alone.  My personal take is that it would take 50X the effort to do without leveraging watson Orchestrate. 
+
